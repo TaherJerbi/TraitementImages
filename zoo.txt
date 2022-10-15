@@ -1,0 +1,7 @@
+P2
+# chat.pgm nbre de ligne = 240 nbre de colonne = 320
+5 3
+255
+9 10 6 29 45
+3 50 19 60 65
+28 240 23 29 33
