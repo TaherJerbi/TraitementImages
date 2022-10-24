@@ -163,10 +163,30 @@ def convert_img(img):
     return new_im
 
 
-im = read_pgm("chat.pgm")
-print(Heg(img=im, width=im.shape[0], height=im.shape[1]))
-new_im = convert_img(img=im)
+def contrast(img, x1, y1, x2, y2):
+    corresp = np.zeros(256)
+    min = np.min(img)
+    max = np.max(img)
+    for i in range(256):
+        if (i <= x1):
+            corresp[i] = y1 * (i - min) / (x1 - min)
 
-pgmwrite(filename="out.pgm", img=new_im)
+        if (i > x1 and i <= x2):
+            continue
+
+        if (i > x2):
+            continue
+
+        if corresp[i] < 0:
+            corresp[i] = 0
+        if corresp[i] > 255:
+            corresp[i] = 255
+
+
+im = read_pgm("chat.pgm")
+new_im = convert_img(img=im)
+plt.imshow(new_im)
+pgmwrite(filename="chat_equalized", img=new_im)
+
 
 # print(moyenneGris(im), " : ", ecartypeGris(im))
